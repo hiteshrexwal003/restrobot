@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Margherita Pizza",
+    "description": "Classic pizza with fresh tomatoes, mozzarella cheese, and basil.",
+    "price": 299
+  },
+  {
+    "name": "Veg Burger",
+    "description": "A delicious vegetarian burger made with a blend of spices and herbs.",
+    "price": 149
+  },
+  {
+    "name": "French Fries",
+    "description": "Crispy golden fries served with a side of ketchup.",
+    "price": 99
+  },
+  {
+    "name": "Pasta Alfredo",
+    "description": "Creamy pasta with Alfredo sauce and grated Parmesan cheese.",
+    "price": 249
+  }
+]
