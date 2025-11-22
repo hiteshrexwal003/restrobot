@@ -29,3 +29,7 @@ async def chat_endpoint(chat_request: ChatRequest):
         result_dict = result_content
     
     return JSONResponse(content={"response": result_dict})
+
+@app.get("/")
+async def health_check():
+    return {"status": "healthy"}

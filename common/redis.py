@@ -1,21 +1,24 @@
-import json
+import json, os
 import redis.asyncio as redis
 from datetime import datetime
 
 class RedisMemoryManager:
     def __init__(self, host="localhost", port=6379, db=0, ttl=3600):
-        self.host = host
-        self.port = port
-        self.db = db
-        self.ttl = ttl
+        self.host = os.getenv("REDIS_HOST", host)
+        self.port = int(os.getenv("REDIS_PORT", port))
+        self.db = int(os.getenv("REDIS_DB", db))
+        self.ttl = int(os.getenv("REDIS_TTL", ttl))
+        self.password = os.getenv("REDIS_PASSWORD", None)
         self.redis = None
 
     async def connect(self):
         if not self.redis:
+            url = f"rediss://:{self.password}@{self.host}:{self.port}/{self.db}"
             self.redis = await redis.from_url(
-                f"redis://{self.host}:{self.port}/{self.db}",
+                url,
                 encoding="utf-8",
-                decode_responses=True
+                decode_responses=True,
+                ssl_cert_reqs="required"
             )
 
     async def add_message(self, session_id, sender, message):
